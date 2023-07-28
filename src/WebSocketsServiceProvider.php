@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use React\EventLoop\Factory;
+use React\EventLoop\Loop;
 use React\EventLoop\LoopInterface;
 use React\MySQL\ConnectionInterface;
 use React\MySQL\Factory as MySQLFactory;
@@ -82,7 +83,7 @@ class WebSocketsServiceProvider extends ServiceProvider
     protected function registerEventLoop()
     {
         $this->app->singleton(LoopInterface::class, function () {
-            return Factory::create();
+            return Loop::get();
         });
     }
 
